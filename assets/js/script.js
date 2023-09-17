@@ -62,10 +62,15 @@ var stButton = document.getElementById('begin');
     }];
 var questionEl = document.getElementById("question");
 var answerBt = document.getElementById("answer-buttons");
+var answers = true;
 
 var score = 0;
 var qIndex = 0;
 
+// Function for quiz
+
+// Function for displaying question
+//  -- Display correct/incorrect
 function showQuestion() {
     reset();
     var currQuest = questions[qIndex];
@@ -76,18 +81,55 @@ function showQuestion() {
         button.innerHTML = answer.text;
         button.classList.add("btn");
         answerBt.appendChild(button);
-    });
+
+        // Event listener for correct answer
+        button.addEventListener("click", function(){
+        var ansButton = answer.isCorrect;
+            if (ansButton === true) {
+                alert("You are Correct!");
+                score ++;
+            }
+            else {
+                alert("You are Incorrect!");
+            }
+                   
+        });
+    }
+    );
 }
 
 function reset() {
-    while(answerBt.firstChild){
+    while (answerBt.firstChild) {
         answerBt.removeChild(answerBt.firstChild);
     }
 }
 
+function nextQuestion() {
+    qIndex++;
+    if (qIndex < questions.length) {
+        showQuestion();
+    }
+    else {
+        showScore();
+    }
+}
+
+answerBt.addEventListener("click", () => {
+    if (qIndex < questions.length) {
+        nextQuestion();
+    }
+})
+
+function showScore() {
+    var finalScore = Math.round((score/6)*100);
+
+    alert("Your final score is " + finalScore + "%.");
+}
+
 
 showQuestion();
-// Save answers to local storage
+
+// Save score to local storage
 //  -- Calculate score
 // Create a timer -- 10 seconds per question
 //  -- Remove 5 seconds for incorrect answers
@@ -95,9 +137,8 @@ showQuestion();
 // Create game over tag
 // High score with initials input
 
-// Function for quiz
-// Function for displaying question
-//  -- Display correct/incorrect
+
+
 
 // Create a try again button/clear high score button
 
