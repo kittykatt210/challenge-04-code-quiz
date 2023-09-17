@@ -1,11 +1,20 @@
 // Get a handle on all html tags, objects, classes, and identifiers
-// console.log everything to ensure it works
-var welcomeScreen = document.querySelector('.welcome');
+var welcomeScreen = document.getElementById('welcome');
 var timer = document.querySelector('.time');
 var stButton = document.getElementById('begin');
+var initialsInput = document.querySelector('#user-initials');
+var beginQuiz = document.getElementById('quiz');
+var scoreInfo = document.querySelector('.high-score');
+var result = document.getElementById('result');
+var gameOver = document.getElementById('game-over')
+var questionEl = document.getElementById("question");
+var answerBt = document.getElementById("answer-buttons");
+var answers = true;
+var score = 0;
+var qIndex = 0;
 
 // Create questions object
-//  -- Contains the question and correct answer
+//  -- Contains the question and answers with correct answer identified
  var questions = [{
         question: "Inside which HTML element do we put the JavaScript?",
         answers: [
@@ -60,18 +69,21 @@ var stButton = document.getElementById('begin');
             { text: 'Neither the &lthead&gt section nor the &ltbody&gt section are correct', isCorrect: false}
         ]
     }];
-var questionEl = document.getElementById("question");
-var answerBt = document.getElementById("answer-buttons");
-var answers = true;
-
-var score = 0;
-var qIndex = 0;
 
 // Function for quiz
+function startQuiz() {
+    welcomeScreen.classList.add("hide");
+    beginQuiz.classList.remove("hide");
+    showQuestion();
+    startTimer();
+};
+
+stButton.addEventListener("click", startQuiz);
 
 // Function for displaying question
 //  -- Display correct/incorrect
 function showQuestion() {
+    
     reset();
     var currQuest = questions[qIndex];
     questionEl.innerHTML = currQuest.question;
@@ -86,11 +98,12 @@ function showQuestion() {
         button.addEventListener("click", function(){
         var ansButton = answer.isCorrect;
             if (ansButton === true) {
-                alert("You are Correct!");
+                result.innerHTML = "Correct";
                 score ++;
             }
             else {
-                alert("You are Incorrect!");
+                result.innerHTML = "Wrong";
+                secondsLeft = secondsLeft - 10;
             }
                    
         });
@@ -118,21 +131,37 @@ answerBt.addEventListener("click", () => {
     if (qIndex < questions.length) {
         nextQuestion();
     }
-})
+    }
+)
 
+// Storing score and initials in local storage
 function showScore() {
     var finalScore = Math.round((score/6)*100);
 
-    alert("Your final score is " + finalScore + "%.");
+    var initialsInput = prompt("Your final score is " + finalScore + "%. Please enter your initials: ");
+
+    localStorage.setItem('user-initials', initialsInput);
+    localStorage.setItem('high-score', finalScore);
+
 }
 
+// Creating the timer for the quiz
+var secondsLeft = 60;
 
-showQuestion();
+function startTimer() {
+  // Sets interval in variable
+  var timeInterval = setInterval(function() {
+    secondsLeft--;
+    timer.textContent = 'Time: ' + secondsLeft;
 
-// Save score to local storage
-//  -- Calculate score
-// Create a timer -- 10 seconds per question
-//  -- Remove 5 seconds for incorrect answers
+    if(secondsLeft === 0 || qIndex === questions.length) {
+        clearInterval(timeInterval);
+        alert("GAME OVER");
+        reset();
+    }
+  }, 1000);
+}
+
 
 // Create game over tag
 // High score with initials input

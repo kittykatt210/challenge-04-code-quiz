@@ -7,3 +7,14 @@
 /* Place timer in the upper right hand corner */
 
 /* Style boxes with color and shades */
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.hide {
+    display: none;
+}

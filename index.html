@@ -10,24 +10,40 @@
 </head>
 <body>
     <h2 class="time" style="text-align: right;"></h2>
-    <!-- Create the welcome page text -->
-    <!-- Create start quiz button -->
-    <div class="'welcome">
-        <h1>Coding Quiz Challenge</h1>
-        <p>Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score time by 10 seconds!</p>
-        <button id="begin">Begin Quiz</button>
-    </div>
-    
-    <!-- Create question box and answer buttons -->
-    <div class="quiz">
-        <h2 id="question">Question goes here</h2>
-        <div id="answer-buttons">
-            <button class="btn">Answer 1</button>
-            <button class="btn">Answer 2</button>
-            <button class="btn">Answer 3</button>
-            <button class="btn">Answer 4</button>            
+    <!-- Create the container for the quiz -->
+    <div class="container">
+        <!-- Create the welcome page text -->
+        <!-- Create start quiz button -->
+        <div id="welcome">
+            <h1>Coding Quiz Challenge</h1>
+            <p>Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score time by 10 seconds!</p>
+            <button id="begin">Begin Quiz</button>
+        </div>
+     
+        <!-- Create question box and answer buttons -->
+        <div id="quiz" class="hide">
+            <h2 id="question"></h2>
+            <div id="answer-buttons">
+                <button class="btn"></button>
+                <button class="btn"></button>
+                <button class="btn"></button>
+                <button class="btn"></button>            
+            </div>
+            <hr>
+            <p id="result"></p>
         </div>
     </div>
+
+    <!-- Create High Score and Initials input/ local storage -->
+    <div class="hide" id="game-over">
+        <p id="final-score"></p>
+        <label for="user-initials">Enter Your Initials:</label>
+        <input type="text" name="user-initials" id="user-initials" placeholder="Enter your initials">
+    
+        <label for="high-score">High Score:</label>
+        <input type="text" name="" id="high-score">
+    </div>
+
     <!-- Create link to .js file -->
     <script src="./assets/js/script.js"></script>
 </body>
