@@ -1,26 +1,31 @@
-// Get a handle on all html tags, objects, classes, and identifiers
-var welcomeScreen = document.getElementById('welcome');
-var timer = document.querySelector('.time');
-var stButton = document.getElementById('begin');
-var submitBtn = document.getElementById('submit');
-var initialsInput = document.querySelector('#user-initials');
-var beginQuiz = document.getElementById('quiz');
-var scoreInfo = document.querySelector('#high-score');
-var result = document.getElementById('result');
-var gameOver = document.getElementById('game-over')
-var questionEl = document.getElementById("question");
-var answerBt = document.getElementById("answer-buttons");
-var finScore = document.getElementById("final-score");
-var playAgain = document.getElementById("play-again");
-var restartBt = document.getElementById("restart");
+// Handle on Main Sections
 var container = document.querySelector(".container");
+var welcomeScreen = document.getElementById("welcome");
+var beginQuiz = document.getElementById("quiz");
+var gameOver = document.getElementById("game-over")
+var playAgain = document.getElementById("play-again");
 
+// Handle on Buttons
+var stButton = document.getElementById("begin");
+var submitBtn = document.getElementById("submit");
+var answerBt = document.getElementById("answer-buttons");
+var restartBt = document.getElementById("restart");
+
+// Handle on other elements
+var timer = document.querySelector(".time");
+var initialsInput = document.querySelector("#user-initials");
+var scoreInfo = document.querySelector("#high-score");
+var result = document.getElementById("result");
+var questionEl = document.getElementById("question");
+var finScore = document.getElementById("final-score");
+
+// Initializing Variables used in various calculations
 var answers = true;
 var score = 0;
 var qIndex = 0;
+var secondsLeft = 60;
 
-// Create questions object
-//  -- Contains the question and answers with correct answer identified
+// Questions Object
  var questions = [{
         question: "Inside which HTML element do we put the JavaScript?",
         answers: [
@@ -76,7 +81,7 @@ var qIndex = 0;
         ]
     }];
 
-// Function for quiz
+// Function to run quiz
 function startQuiz() {
     welcomeScreen.classList.add("hide");
     beginQuiz.classList.remove("hide");
@@ -84,11 +89,10 @@ function startQuiz() {
     showQuestion();
     startTimer();
 };
-
+// Event listener to start quiz
 stButton.addEventListener("click", startQuiz);
 
 // Function for displaying question
-//  -- Display correct/incorrect
 function showQuestion() {  
     reset();
     var currQuest = questions[qIndex];
@@ -113,7 +117,7 @@ function showQuestion() {
             }
                    
         });
-
+        // Event listener to remove correct/incorrect display on screen
         container.addEventListener("mousemove", function(){
             result.innerHTML = '';
         })
@@ -122,12 +126,14 @@ function showQuestion() {
     
 }
 
+// Function to reset answer buttons with new verbiage
 function reset() {
     while (answerBt.firstChild) {
         answerBt.removeChild(answerBt.firstChild);
     }
 }
 
+// Function to increase question index to move to next question/answer set
 function nextQuestion() {
     qIndex++;
     if (qIndex < questions.length) {
@@ -138,6 +144,7 @@ function nextQuestion() {
     }
 }
 
+// Event listener to advance to the next question
 answerBt.addEventListener("click", () => {
     if (qIndex < questions.length) {
         nextQuestion();
@@ -145,7 +152,7 @@ answerBt.addEventListener("click", () => {
     }
 )
 
-// Storing score and initials in local storage
+// Function to calculate/show final score and input initials
 function showScore() {
     
     var finalScore = Math.round((score/6)*100);
@@ -154,20 +161,22 @@ function showScore() {
     timer.classList.add("hide");
 
     finScore.innerHTML = "Your score is: " + finalScore;
-    localStorage.setItem('high-score', finalScore);
+    localStorage.setItem("high-score", finalScore);
 
+    // Event listener to store user initials and move to the final display page
     submitBtn.addEventListener("click", function(event) {
         event.preventDefault();
 
         var ints = initialsInput.value;
-        localStorage.setItem('user-initials', ints);
+        localStorage.setItem("user-initials", ints);
         gameOver.classList.add("hide");
         playAgain.classList.remove("hide");
-        scoreInfo.innerHTML = localStorage.getItem('user-initials') + " - " + localStorage.getItem('high-score')
+        scoreInfo.innerHTML = localStorage.getItem("user-initials") + " - " + localStorage.getItem("high-score")
 
     });   
 }
 
+// Event listener to restart the entire process, taking user back to welcome page
 restartBt.addEventListener("click", function() {
     playAgain.classList.add("hide");
     welcomeScreen.classList.remove("hide");   
@@ -176,32 +185,17 @@ restartBt.addEventListener("click", function() {
     secondsLeft = 60;
 });
 
-// Creating the timer for the quiz
-var secondsLeft = 30;
-
+// Function for the timer
 function startTimer() {
   // Sets interval in variable
   var timeInterval = setInterval(function() {
     secondsLeft--;
-    timer.textContent = 'Time: ' + secondsLeft;
+    timer.textContent = "Time: " + secondsLeft;
 
     if(secondsLeft === 0 || qIndex === questions.length) {
         clearInterval(timeInterval);
-        // alert("GAME OVER");
         reset();
         showScore();
     }
   }, 1000);
 }
-
-
-// Create game over tag
-// High score with initials input
-
-
-
-
-// Create a try again button/clear high score button
-
-
-

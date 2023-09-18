@@ -3,25 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Come up with webpage title -->
     <title>Kathryn's JavaScript Quiz</title>
-    <!-- Create link to css file -->
     <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 <body>
     
-    <!-- Create the container for the quiz -->
+    <!-- Container for the quiz -->
     <div class="container">
         <h2 class="time" style="text-align: right;"></h2>
-        <!-- Create the welcome page text -->
-        <!-- Create start quiz button -->
+        <!-- Welcome page text and start button -->
         <div id="welcome">
             <h1>Coding Quiz Challenge</h1>
             <p>Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score time by 10 seconds!</p>
             <button id="begin">Begin Quiz</button>
         </div>
      
-        <!-- Create question box and answer buttons -->
+        <!-- Question box and answer buttons -->
         <div id="quiz" class="hide">
             <h2 id="question"></h2>
             <div id="answer-buttons">
@@ -34,9 +31,9 @@
             <p id="result"></p>
         </div>
     
-        <!-- Create High Score and Initials input/ local storage -->
+        <!-- High Score and Initials input/local storage -->
         <div class="hide" id="game-over">
-            <h2>All Done!</h2>
+            <h1>All Done!</h1>
             <p id="final-score"></p>
             <label for="user-initials">Enter Your Initials:</label>
             <input type="user-initials" name="user-initials" id="user-initials">
@@ -44,7 +41,7 @@
         </div>
 
         <div class="hide" id="play-again">
-            <h2>High Scores</h2>
+            <h1>High Scores</h1>
             <label for="high-score"></label>
             <p id="high-score"></p>
             <button id="restart">Play Again</button>
@@ -53,7 +50,6 @@
 
     </div>
 
-    <!-- Create link to .js file -->
     <script src="./assets/js/script.js"></script>
 </body>
 </html>
