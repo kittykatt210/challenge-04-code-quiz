@@ -32,18 +32,22 @@
             <hr>
             <p id="result"></p>
         </div>
-    </div>
-
-    <!-- Create High Score and Initials input/ local storage -->
-    <div class="hide" id="game-over">
-        <p id="final-score"></p>
-        <label for="user-initials">Enter Your Initials:</label>
-        <input type="text" name="user-initials" id="user-initials" placeholder="Enter your initials">
     
-        <label for="high-score">High Score:</label>
-        <input type="text" name="" id="high-score">
-    </div>
+        <!-- Create High Score and Initials input/ local storage -->
+        <div class="hide" id="game-over">
+            <h2>All Done!</h2>
+            <p id="final-score"></p>
+            <label for="user-initials">Enter Your Initials:</label>
+            <input type="user-initials" name="user-initials" id="user-initials">
+            <button id="submit">SUBMIT</button>           
+        </div>
 
+        <div class="hide" id="play-again">
+            <h2>High Scores</h2>
+            <label for="high-score"></label>
+            <p id="high-score"></p>
+        </div>
+    </div>
     <!-- Create link to .js file -->
     <script src="./assets/js/script.js"></script>
 </body>

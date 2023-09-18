@@ -7,14 +7,44 @@
 /* Place timer in the upper right hand corner */
 
 /* Style boxes with color and shades */
-.container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+/* style boxes with color and shades */
+.container{
+    width: 800px;
+    height: 400px;
+    max-width: 80%;
+    background-color: aqua;
+    border-radius: 5px;
+    padding: 10px;
+    margin-top: auto;
+    margin-right: auto ;
+    margin-left:auto;
     text-align: center;
 }
 
-.hide {
-    display: none;
+#welcome h1{
+color: black;
+font-style: oblique;
+font-weight: bold;
+}
+
+#begin{
+background-color: crimson;
+border-radius: 5px;
+padding: 5px 5px;
+color: white;
+font-style: italic;
+}
+
+/* create fonts for answer and questions */
+.btn{
+    background-color:crimson;
+    border-radius: 20px;
+    padding: 5px 5px;
+    color: white;
+    outline: none;
+    font-style:italic;
+}
+
+.hide{
+    display:none;
 }

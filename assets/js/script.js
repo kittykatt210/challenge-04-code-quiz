@@ -2,13 +2,17 @@
 var welcomeScreen = document.getElementById('welcome');
 var timer = document.querySelector('.time');
 var stButton = document.getElementById('begin');
+var submitBtn = document.getElementById('submit');
 var initialsInput = document.querySelector('#user-initials');
 var beginQuiz = document.getElementById('quiz');
-var scoreInfo = document.querySelector('.high-score');
+var scoreInfo = document.querySelector('#high-score');
 var result = document.getElementById('result');
 var gameOver = document.getElementById('game-over')
 var questionEl = document.getElementById("question");
 var answerBt = document.getElementById("answer-buttons");
+var finScore = document.getElementById("final-score");
+var playAgain = document.getElementById("play-again");
+
 var answers = true;
 var score = 0;
 var qIndex = 0;
@@ -136,17 +140,28 @@ answerBt.addEventListener("click", () => {
 
 // Storing score and initials in local storage
 function showScore() {
+    
     var finalScore = Math.round((score/6)*100);
+    beginQuiz.classList.add("hide");
+    gameOver.classList.remove("hide");
 
-    var initialsInput = prompt("Your final score is " + finalScore + "%. Please enter your initials: ");
-
-    localStorage.setItem('user-initials', initialsInput);
+    finScore.innerHTML = "Your score is: " + finalScore;
     localStorage.setItem('high-score', finalScore);
 
+    submitBtn.addEventListener("click", function(event) {
+        event.preventDefault();
+
+        var ints = initialsInput.value;
+        localStorage.setItem('user-initials', ints);
+        gameOver.classList.add("hide");
+        playAgain.classList.remove("hide");
+        scoreInfo.innerHTML = localStorage.getItem('user-initials') + " - " + localStorage.getItem('high-score')
+
+    });   
 }
 
 // Creating the timer for the quiz
-var secondsLeft = 60;
+var secondsLeft = 30;
 
 function startTimer() {
   // Sets interval in variable
@@ -156,8 +171,9 @@ function startTimer() {
 
     if(secondsLeft === 0 || qIndex === questions.length) {
         clearInterval(timeInterval);
-        alert("GAME OVER");
+        // alert("GAME OVER");
         reset();
+        showScore();
     }
   }, 1000);
 }
