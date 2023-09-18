@@ -14,7 +14,7 @@ In the course of building this project, I learned that there is a lot that goes 
 
 To view my project click the link below:
 
-https://kittykatt210.github.io/challenge-04-code-quiz
+https://kittykatt210.github.io/challenge-04-code-quiz/
 
 ## Usage
 
@@ -31,7 +31,10 @@ The following image shows the final page that displays the user initials/score a
 
 ## Credits
 
-List your collaborators, if any, with links to their GitHub profiles.
+I collaborated with Anthony Strickland for this project.
+
+https://github.com/AnthonyStrickland?tab=repositories
+
 
 
 The following quiz was used to get questions on JavaScript for my quiz:
