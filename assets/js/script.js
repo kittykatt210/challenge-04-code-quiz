@@ -145,7 +145,7 @@ function nextQuestion() {
 }
 
 // Event listener to advance to the next question
-answerBt.addEventListener("click", () => {
+answerBt.addEventListener("click", function() {
     if (qIndex < questions.length) {
         nextQuestion();
     }
