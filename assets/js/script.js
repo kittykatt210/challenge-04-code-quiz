@@ -12,6 +12,7 @@ var questionEl = document.getElementById("question");
 var answerBt = document.getElementById("answer-buttons");
 var finScore = document.getElementById("final-score");
 var playAgain = document.getElementById("play-again");
+var restartBt = document.getElementById("restart");
 
 var answers = true;
 var score = 0;
@@ -78,6 +79,7 @@ var qIndex = 0;
 function startQuiz() {
     welcomeScreen.classList.add("hide");
     beginQuiz.classList.remove("hide");
+    timer.classList.remove("hide");
     showQuestion();
     startTimer();
 };
@@ -86,8 +88,7 @@ stButton.addEventListener("click", startQuiz);
 
 // Function for displaying question
 //  -- Display correct/incorrect
-function showQuestion() {
-    
+function showQuestion() {  
     reset();
     var currQuest = questions[qIndex];
     questionEl.innerHTML = currQuest.question;
@@ -144,6 +145,7 @@ function showScore() {
     var finalScore = Math.round((score/6)*100);
     beginQuiz.classList.add("hide");
     gameOver.classList.remove("hide");
+    timer.classList.add("hide");
 
     finScore.innerHTML = "Your score is: " + finalScore;
     localStorage.setItem('high-score', finalScore);
@@ -159,6 +161,15 @@ function showScore() {
 
     });   
 }
+
+restartBt.addEventListener("click", function() {
+    playAgain.classList.add("hide");
+    welcomeScreen.classList.remove("hide");
+    
+    qIndex = 0;
+    score = 0;
+    secondsLeft = 60;
+});
 
 // Creating the timer for the quiz
 var secondsLeft = 30;

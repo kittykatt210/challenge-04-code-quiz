@@ -27,22 +27,45 @@ font-style: oblique;
 font-weight: bold;
 }
 
+#welcome p{
+    font-size: 24px;
+}
 #begin{
-background-color: crimson;
-border-radius: 5px;
+background-color: rgb(44, 4, 105);
+font-size: 24px;
+border-radius: 20px;
 padding: 5px 5px;
 color: white;
-font-style: italic;
+outline: none;
 }
 
 /* create fonts for answer and questions */
-.btn{
-    background-color:crimson;
+#answer-buttons {
+    text-align: center;
+}
+
+.btn {
+    background-color:rgb(44, 4, 105);
+    font-size: 18px;
     border-radius: 20px;
     padding: 5px 5px;
     color: white;
     outline: none;
-    font-style:italic;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#restart {
+    background-color:rgb(44, 4, 105);
+    font-size: 18px;
+    border-radius: 20px;
+    padding: 5px 5px;
+    color: white;
+    outline: none;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 }
 
 .hide{
