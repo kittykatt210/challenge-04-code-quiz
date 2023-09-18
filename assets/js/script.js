@@ -13,6 +13,7 @@ var answerBt = document.getElementById("answer-buttons");
 var finScore = document.getElementById("final-score");
 var playAgain = document.getElementById("play-again");
 var restartBt = document.getElementById("restart");
+var container = document.querySelector(".container");
 
 var answers = true;
 var score = 0;
@@ -112,8 +113,13 @@ function showQuestion() {
             }
                    
         });
+
+        container.addEventListener("mousemove", function(){
+            result.innerHTML = '';
+        })
     }
     );
+    
 }
 
 function reset() {
@@ -164,8 +170,7 @@ function showScore() {
 
 restartBt.addEventListener("click", function() {
     playAgain.classList.add("hide");
-    welcomeScreen.classList.remove("hide");
-    
+    welcomeScreen.classList.remove("hide");   
     qIndex = 0;
     score = 0;
     secondsLeft = 60;
